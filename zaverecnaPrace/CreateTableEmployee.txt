@@ -1,0 +1,9 @@
+CREATE TABLE [dbo].[Employee]
+(
+	[PersonalNumber] INT NOT NULL PRIMARY KEY Identity(1, 1),
+	[FirstName] Varchar(15) not null,
+	[LastName] varchar(15) not null,
+	[BirthDate] Date not null,
+	[Email] varchar(50) not null,
+	[Phone] varchar(13) not null
+)

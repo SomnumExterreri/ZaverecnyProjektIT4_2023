@@ -1,0 +1,6 @@
+CREATE TABLE [dbo].[Contract]
+(
+	[ContractNumber] INT NOT NULL PRIMARY KEY Identity(1, 1),
+	[Customer] Varchar(30) not null,
+	[Description] varchar(100) not null,
+)

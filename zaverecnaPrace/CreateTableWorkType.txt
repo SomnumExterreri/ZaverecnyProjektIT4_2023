@@ -1,0 +1,5 @@
+CREATE TABLE [dbo].[WorkType]
+(
+	[Name] Varchar(30) not null PRIMARY KEY,
+	[Description] varchar(100) not null,
+)
