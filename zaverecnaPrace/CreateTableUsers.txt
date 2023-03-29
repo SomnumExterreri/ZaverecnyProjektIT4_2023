@@ -3,5 +3,5 @@ CREATE TABLE [dbo].[Users]
 	[Id] INT NOT NULL PRIMARY KEY identity(1,1),
 	[Username] nvarchar(25) not null unique,
 	[Password] varbinary(max) not null, 
-	[Salt] varbinary(max) not null
+	[PasswordSalt] varbinary(max) not null
 )

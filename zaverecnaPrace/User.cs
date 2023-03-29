@@ -10,25 +10,25 @@ namespace zaverecnaPrace
     internal class User
     {
         public int Id { get; set; }
-        public int IdEmployee { get; set; }
+        public int PersonalNumber { get; set; }
         public int Role { get; set; }
         public string UserName { get; set; }
         public byte[] Password { get; set; }
         public byte[] PasswordSalt { get; set; }
 
 
-        public User(int id, int idEmployee, int role, string userName)
+        public User(int id, int personalNumber, int role, string userName)
         {
             Id = id;
-            IdEmployee = idEmployee;
+            PersonalNumber = personalNumber;
             Role = role;
             UserName = userName;
         }
 
-        public User(int id, int idEmployee, int role, string userName, byte[] password, byte[] passwordSalt)
+        public User(int id, int personalNumber, int role, string userName, byte[] password, byte[] passwordSalt)
         {
             Id = id;
-            IdEmployee = idEmployee;
+            PersonalNumber = personalNumber;
             Role = role;
             UserName = userName;
             Password = password;
