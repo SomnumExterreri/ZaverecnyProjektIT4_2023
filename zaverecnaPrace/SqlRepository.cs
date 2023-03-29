@@ -19,7 +19,7 @@ namespace zaverecnaPrace
             this.Connection = connection;
         }
 
-        public void Login(string Username, string password)
+        public void Login(string Username, string Password)
         {
             using (SqlConnection connection = new SqlConnection(Connection))
             {
@@ -37,6 +37,20 @@ namespace zaverecnaPrace
                     }
                 }
                 connection.Close();
+            }
+        }
+
+
+
+        public void Register(string Username, string Password)
+        {
+            using (SqlConnection connection = new SqlConnection(Connection))
+            {
+                connection.Open();
+                using (SqlCommand cmd = connection.CreateCommand())
+                {
+
+                }
             }
         }
     }
