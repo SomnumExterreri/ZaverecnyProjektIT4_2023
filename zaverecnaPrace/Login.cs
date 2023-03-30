@@ -12,12 +12,42 @@ namespace zaverecnaPrace
 {
     public partial class Login : Form
     {
-        string ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Attendance;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         SqlRepository sqlRepository;
         public Login()
         {
             InitializeComponent();
             sqlRepository = new SqlRepository();
+        }
+        private void login()
+        {
+            if (txtUsername.Text != "" && txtPassword.Text != "")
+            {
+                User user = sqlRepository.GetUserByUsername(txtUsername.Text);
+                if (user != null)
+                {
+                    if (user.Verify(txtPassword.Text))
+                    {
+                        var Role = sqlRepository.GetRole(user.Role);
+                        if (Role != null && Role.Name != "admin")
+                        {
+
+                        }
+                        else
+                        {
+
+                        }
+                    }
+                    else
+                        MessageBox.Show("Heslo není správné!!");
+                }
+            }
+            else
+                MessageBox.Show("Vyplňte všechny údaje!!");
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            login();
         }
     }
 }

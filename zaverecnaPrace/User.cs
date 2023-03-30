@@ -17,13 +17,6 @@ namespace zaverecnaPrace
         public byte[] PasswordSalt { get; set; }
 
 
-        public User(int id, int personalNumber, int role, string userName)
-        {
-            Id = id;
-            PersonalNumber = personalNumber;
-            Role = role;
-            UserName = userName;
-        }
 
         public User(int id, int personalNumber, int role, string userName, byte[] password, byte[] passwordSalt)
         {
@@ -48,10 +41,10 @@ namespace zaverecnaPrace
             Hashing("Heslo");
         }
 
-        public void Verify(string text)
+        public bool Verify(string text)
         {
             byte[] hash;
-            using (var hmac = HMACSHA512(PasswordSalt))
+            using (var hmac = new HMACSHA512(PasswordSalt))
             {
                 hash = hmac.ComputeHash(Encoding.UTF8.GetBytes(text));
             }

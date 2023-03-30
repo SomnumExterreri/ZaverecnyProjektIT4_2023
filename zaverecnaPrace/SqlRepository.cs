@@ -15,9 +15,9 @@ namespace zaverecnaPrace
         byte[] passwordHash;
 
 
-        public SqlRepository(string connection)
+        public SqlRepository()
         {
-            this.Connection = connection;
+            string ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Attendance;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         }
 
         public void Login(string Username, string Password)
@@ -25,13 +25,13 @@ namespace zaverecnaPrace
             using (SqlConnection connection = new SqlConnection(Connection))
             {
                 connection.Open();
-                using(SqlCommand cmd = connection.CreateCommand())
+                using (SqlCommand cmd = connection.CreateCommand())
                 {
                     cmd.CommandText = "select * from Users where Username = @username";
                     cmd.Parameters.AddWithValue("username", Username);
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        if(reader.Read())
+                        if (reader.Read())
                         {
 
                         }
@@ -41,7 +41,55 @@ namespace zaverecnaPrace
             }
         }
 
+        public void UpdateUser(string Username, int Role, int Id)
+        {
+            using(SqlConnection connection = new SqlConnection(Connection))
+            {
+                connection.Open();
+                using(SqlCommand cmd = connection.CreateCommand())
+                {
+                    cmd.CommandText = "UPDATE Users SET Username=@Username, Role=@Role WHERE Id=Id";
+                    cmd.Parameters.AddWithValue("Username", Username);
+                    cmd.Parameters.AddWithValue("Role", Role);
+                    cmd.Parameters.AddWithValue("Id", Id);
+                    cmd.ExecuteNonQuery();
+                }
+                connection.Close();
+            }
+        }
 
+        public void UpdateRole(int Id, string Name)
+        {
+            using(SqlConnection connection=new SqlConnection(Connection))
+            {
+                connection.Open();
+                using(SqlCommand cmd =connection.CreateCommand())
+                {
+                    cmd.CommandText = "UPDATE Role set Name=@Name WHERE Id=@Id";
+                    cmd.Parameters.AddWithValue("Name", Name);
+                    cmd.Parameters.AddWithValue("Id", Id);
+                    cmd.ExecuteNonQuery();
+                }
+                connection.Close();
+            }
+        }
+
+        public void ResetPassword(byte[] Password, byte[] PasswordSalt, int Id)
+        {
+            using (SqlConnection connection = new SqlConnection(Connection))
+            {
+                connection.Open();
+                using (SqlCommand cmd = connection.CreateCommand())
+                {
+                    cmd.CommandText = "UPDATE Users SET Password=@Password, PasswordSalt=@PasswordSalt WHERE Id=Id";
+                    cmd.Parameters.AddWithValue("Password", Password);
+                    cmd.Parameters.AddWithValue("PasswordSalt", PasswordSalt);
+                    cmd.Parameters.AddWithValue("Id", Id);
+                    cmd.ExecuteNonQuery();
+                }
+                connection.Close();
+            }
+        }
 
         public void Register(int personalNumber, int role, string username, byte[] password, byte[] passwordSalt)
         {
@@ -118,7 +166,7 @@ namespace zaverecnaPrace
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         if (reader.Read())
-                            user = new User(reader["Username"].ToString(), Convert.ToInt32(reader["Id"]), (byte[])reader["Password"], (byte[])reader["PasswordSalt"], Convert.ToInt32(reader["Role"]));
+                            user = new User(Convert.ToInt32(reader["Id"]), Convert.ToInt32(reader["PersonalNumber"]), Convert.ToInt32(reader["Role"]), reader["Username"].ToString(), (byte[])reader["Password"], (byte[])reader["PasswordSalt"]);
                         else
                             MessageBox.Show("Neplatné uživatelské jméno");
                     }
@@ -141,7 +189,7 @@ namespace zaverecnaPrace
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         if (reader.Read())
-                            user = new User(reader["Username"].ToString(), Convert.ToInt32(reader["Id"]), (byte[])reader["Password"], (byte[])reader["PasswordSalt"], Convert.ToInt32(reader["Role"]));
+                            user = new User(Convert.ToInt32(reader["Id"]), Convert.ToInt32(reader["PersonalNumber"]), Convert.ToInt32(reader["Role"]), reader["Username"].ToString(), (byte[])reader["Password"], (byte[])reader["PasswordSalt"]);
                         else
                             MessageBox.Show("Neplatné uživatelské jméno");
                     }
@@ -150,5 +198,53 @@ namespace zaverecnaPrace
             }
             return user;
         }
+
+        public Role GetRole(int Id)
+        {
+            Role role = null;
+            using (SqlConnection connection = new SqlConnection(Connection))
+            {
+                connection.Open();
+                using(SqlCommand cmd = connection.CreateCommand())
+                {
+                    cmd.CommandText = "SELECT * FROM Role WHERE Id=@Id";
+                    cmd.Parameters.AddWithValue("Id", Id);
+                    using(SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                            role = new Role(reader["Name"].ToString(), 0);
+                        else
+                            MessageBox.Show("Špatné Id role!!");
+                    }
+                }
+                connection.Close();
+            }
+            return role;
+        }
+
+        public bool EmployeeChecker(int Id)
+        {
+            User user = null;
+            using (SqlConnection connection = new SqlConnection(Connection))
+            {
+                connection.Open();
+                using(SqlCommand cmd = connection.CreateCommand())
+                {
+                    cmd.CommandText = "SELECT * FROM Users WHERE personalNumber=@personalNumber";
+                    cmd.Parameters.AddWithValue("personalNumber", personalNumber);
+                    using(SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                            user = new User(Convert.ToInt32(reader["Id"]));
+                    }
+                }
+                connection.Close();
+            }
+            if(user != null)
+                return true;
+            else
+                return false;
+        }
+        
     }
 }
