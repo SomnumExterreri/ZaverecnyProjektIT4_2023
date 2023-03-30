@@ -46,6 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminMainPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminMainPage.Designer.cs">
+      <DependentUpon>AdminMainPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChangePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChangePassword.Designer.cs">
+      <DependentUpon>ChangePassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -57,6 +69,15 @@
     <Compile Include="Role.cs" />
     <Compile Include="SqlRepository.cs" />
     <Compile Include="User.cs" />
+    <Compile Include="UserMainPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserMainPage.Designer.cs">
+      <DependentUpon>UserMainPage.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="ChangePassword.resx">
+      <DependentUpon>ChangePassword.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>

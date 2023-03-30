@@ -222,29 +222,29 @@ namespace zaverecnaPrace
             return role;
         }
 
-        public bool EmployeeChecker(int Id)
-        {
-            User user = null;
-            using (SqlConnection connection = new SqlConnection(Connection))
-            {
-                connection.Open();
-                using(SqlCommand cmd = connection.CreateCommand())
-                {
-                    cmd.CommandText = "SELECT * FROM Users WHERE personalNumber=@personalNumber";
-                    cmd.Parameters.AddWithValue("personalNumber", personalNumber);
-                    using(SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                            user = new User(Convert.ToInt32(reader["Id"]));
-                    }
-                }
-                connection.Close();
-            }
-            if(user != null)
-                return true;
-            else
-                return false;
-        }
+        //public bool EmployeeChecker(int Id)
+        //{
+        //    User user = null;
+        //    using (SqlConnection connection = new SqlConnection(Connection))
+        //    {
+        //        connection.Open();
+        //        using(SqlCommand cmd = connection.CreateCommand())
+        //        {
+        //            cmd.CommandText = "SELECT * FROM Users WHERE personalNumber=@personalNumber";
+        //            cmd.Parameters.AddWithValue("personalNumber", personalNumber);
+        //            using(SqlDataReader reader = cmd.ExecuteReader())
+        //            {
+        //                if (reader.Read())
+        //                    user = new User(Convert.ToInt32(reader["Id"]));
+        //            }
+        //        }
+        //        connection.Close();
+        //    }
+        //    if(user != null)
+        //        return true;
+        //    else
+        //        return false;
+        //}
         
     }
 }
