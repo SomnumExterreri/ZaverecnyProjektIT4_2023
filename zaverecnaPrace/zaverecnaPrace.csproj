@@ -52,6 +52,24 @@
     <Compile Include="AdminMainPage.Designer.cs">
       <DependentUpon>AdminMainPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdminRoleControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminRoleControl.Designer.cs">
+      <DependentUpon>AdminRoleControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminRoleControlAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminRoleControlAdd.Designer.cs">
+      <DependentUpon>AdminRoleControlAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminRoleEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminRoleEdit.Designer.cs">
+      <DependentUpon>AdminRoleEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="ChangePassword.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,6 +93,18 @@
     <Compile Include="UserMainPage.Designer.cs">
       <DependentUpon>UserMainPage.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AdminMainPage.resx">
+      <DependentUpon>AdminMainPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminRoleControl.resx">
+      <DependentUpon>AdminRoleControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminRoleControlAdd.resx">
+      <DependentUpon>AdminRoleControlAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminRoleEdit.resx">
+      <DependentUpon>AdminRoleEdit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ChangePassword.resx">
       <DependentUpon>ChangePassword.cs</DependentUpon>
     </EmbeddedResource>

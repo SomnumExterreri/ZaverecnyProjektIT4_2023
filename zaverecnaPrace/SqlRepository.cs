@@ -222,6 +222,26 @@ namespace zaverecnaPrace
             return role;
         }
 
+        public List<Role> GetRole()
+        {
+            List<Role> roleList = new List<Role>();
+            using(SqlConnection connection = new SqlConnection(Connection))
+            {
+                connection.Open();
+                using(SqlCommand cmd = connection.CreateCommand())
+                {
+                    cmd.CommandText = "SELECT * FROM Role";
+                    using(SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                            roleList.Add(new Role(reader["Name"].ToString(), Convert.ToInt32(reader["Id"])));
+                    }
+                }
+                connection.Close();
+            }
+            return roleList;
+        }
+
         //public bool EmployeeChecker(int Id)
         //{
         //    User user = null;

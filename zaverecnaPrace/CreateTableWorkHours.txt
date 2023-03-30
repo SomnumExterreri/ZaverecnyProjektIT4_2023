@@ -1,0 +1,11 @@
+CREATE TABLE [dbo].[WorkHours]
+(
+	[Id] INT NOT NULL PRIMARY KEY,
+	[EmployeeId] int not null,
+	[ContactId] int not null,
+	[WorkTypeStyle] varchar(30) not null,
+	[Hours] int not null, 
+    CONSTRAINT [EmployeeId] FOREIGN KEY ([EmployeeId]) REFERENCES [dbo].[Employee]([PersonalNumber]), 
+    CONSTRAINT [ContactId] FOREIGN KEY ([ContactId]) REFERENCES [dbo].[Contract]([ContractNumber]), 
+    CONSTRAINT [WorkTypeId] FOREIGN KEY ([WorkTypeStyle]) REFERENCES [dbo].[WorkType]([Name])
+)
