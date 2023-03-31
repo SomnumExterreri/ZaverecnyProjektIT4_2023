@@ -45,7 +45,7 @@ namespace zaverecnaPrace
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            var IdUser = Convert.ToInt32(lvControl.SelectedItems[0].SubItems[2].Text);
+            var IdUser = Convert.ToInt32(lvControl.SelectedItems[0].SubItems[0].Text);
             AdminUserEdit adminUserEdit = new AdminUserEdit(IdUser, this);
             adminUserEdit.ShowDialog();
         }
@@ -54,7 +54,7 @@ namespace zaverecnaPrace
         {
             if (lvControl.SelectedItems.Count > 0)
             {
-                sqlRepository.DeleteUser(Convert.ToInt32(lvControl.SelectedItems[0].SubItems[2].Text));
+                sqlRepository.DeleteUser(Convert.ToInt32(lvControl.SelectedItems[0].SubItems[0].Text));
                 LoadData();
             }
             else

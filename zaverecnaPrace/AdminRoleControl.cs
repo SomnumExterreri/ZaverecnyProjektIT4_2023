@@ -22,7 +22,7 @@ namespace zaverecnaPrace
         public void LoadData()
         {
             lvControl.Items.Clear();
-            var roles = sqlRepository.GetRole();
+            var roles = sqlRepository.GetRoles();
             foreach (var role in roles)
                 lvControl.Items.Add(new ListViewItem(new string[] { role.Id.ToString(), role.Name}));
         }
@@ -41,7 +41,7 @@ namespace zaverecnaPrace
         {
             if (lvControl.SelectedItems.Count > 0)
             {
-                AdminRoleEdit adminRoleEdit = new AdminRoleEdit(Convert.ToInt32(lvControl.SelectedItems[0].SubItems[1].Text), this);
+                AdminRoleEdit adminRoleEdit = new AdminRoleEdit(Convert.ToInt32(lvControl.SelectedItems[0].SubItems[0].Text), this);
                 adminRoleEdit.ShowDialog();
             }
         }
@@ -50,7 +50,7 @@ namespace zaverecnaPrace
         {
             if (lvControl.SelectedItems.Count > 0)
             {
-                sqlRepository.DeleteRole(Convert.ToInt32(lvControl.SelectedItems[0].SubItems[1].Text));
+                sqlRepository.DeleteRole(Convert.ToInt32(lvControl.SelectedItems[0].SubItems[0].Text));
                 LoadData();
             }
             else

@@ -42,7 +42,7 @@ namespace zaverecnaPrace
         {
             if(lvContract.SelectedItems.Count > 0)
             {
-                AdminContractEdit adminContractEdit = new AdminContractEdit(Convert.ToInt32(lvContract.SelectedItems[0].SubItems[2].Text));
+                AdminContractEdit adminContractEdit = new AdminContractEdit(Convert.ToInt32(lvContract.SelectedItems[0].SubItems[0].Text));
                 adminContractEdit.ShowDialog();
             }
         }
@@ -51,7 +51,7 @@ namespace zaverecnaPrace
         {
             if (lvContract.SelectedItems.Count > 0)
             {
-                sqlRepository.DeleteContract(Convert.ToInt32(lvContract.SelectedItems[0].SubItems[2].Text));
+                sqlRepository.DeleteContract(Convert.ToInt32(lvContract.SelectedItems[0].SubItems[0].Text));
                 LoadData();
             }
             else

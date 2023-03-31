@@ -1,6 +1,6 @@
 ﻿namespace zaverecnaPrace
 {
-    partial class AdminWorkTypeControl
+    partial class AdminEmployyeControl
     {
         /// <summary>
         /// Required designer variable.
@@ -32,14 +32,17 @@
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.lvControl = new System.Windows.Forms.ListView();
-            this.Id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Description = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.PersonalNumber = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.FirstName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.LastName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.BirthDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Email = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Phone = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(552, 12);
+            this.btnAdd.Location = new System.Drawing.Point(713, 42);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnAdd.TabIndex = 0;
@@ -49,7 +52,7 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(552, 218);
+            this.btnEdit.Location = new System.Drawing.Point(713, 218);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(75, 23);
             this.btnEdit.TabIndex = 1;
@@ -59,7 +62,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(552, 415);
+            this.btnDelete.Location = new System.Drawing.Point(713, 392);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 2;
@@ -70,42 +73,62 @@
             // lvControl
             // 
             this.lvControl.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.Id,
-            this.Name,
-            this.Description});
+            this.PersonalNumber,
+            this.FirstName,
+            this.LastName,
+            this.BirthDate,
+            this.Email,
+            this.Phone});
             this.lvControl.GridLines = true;
             this.lvControl.HideSelection = false;
-            this.lvControl.Location = new System.Drawing.Point(0, 1);
+            this.lvControl.Location = new System.Drawing.Point(0, 0);
             this.lvControl.Name = "lvControl";
-            this.lvControl.Size = new System.Drawing.Size(546, 449);
+            this.lvControl.Size = new System.Drawing.Size(707, 455);
             this.lvControl.TabIndex = 3;
             this.lvControl.UseCompatibleStateImageBehavior = false;
             this.lvControl.View = System.Windows.Forms.View.Details;
             // 
-            // Id
+            // PersonalNumber
             // 
-            this.Id.Text = "Id";
+            this.PersonalNumber.Text = "Id";
             // 
-            // Name
+            // FirstName
             // 
-            this.Name.Text = "Název specializace";
-            this.Name.Width = 191;
+            this.FirstName.Text = "Jméno";
+            this.FirstName.Width = 101;
             // 
-            // Description
+            // LastName
             // 
-            this.Description.Text = "Popis";
-            this.Description.Width = 292;
+            this.LastName.Text = "Přijmení";
+            this.LastName.Width = 107;
             // 
-            // AdminWorkTypeControl
+            // BirthDate
+            // 
+            this.BirthDate.Text = "Datum Narození";
+            this.BirthDate.Width = 122;
+            // 
+            // Email
+            // 
+            this.Email.Text = "E-mail";
+            this.Email.Width = 182;
+            // 
+            // Phone
+            // 
+            this.Phone.Text = "Telefonní číslo";
+            this.Phone.Width = 134;
+            // 
+            // AdminEmployyeControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(676, 450);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.lvControl);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnAdd);
-            this.Load += new System.EventHandler(this.AdminWorkTypeControl_Load);
+            this.Name = "AdminEmployyeControl";
+            this.Text = "AdminEmployyeControl";
+            this.Load += new System.EventHandler(this.AdminEmployyeControl_Load);
             this.ResumeLayout(false);
 
         }
@@ -116,8 +139,11 @@
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.ListView lvControl;
-        private new System.Windows.Forms.ColumnHeader Name;
-        private System.Windows.Forms.ColumnHeader Description;
-        private System.Windows.Forms.ColumnHeader Id;
+        private System.Windows.Forms.ColumnHeader PersonalNumber;
+        private System.Windows.Forms.ColumnHeader FirstName;
+        private System.Windows.Forms.ColumnHeader LastName;
+        private System.Windows.Forms.ColumnHeader BirthDate;
+        private System.Windows.Forms.ColumnHeader Email;
+        private System.Windows.Forms.ColumnHeader Phone;
     }
 }

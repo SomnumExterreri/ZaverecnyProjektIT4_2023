@@ -325,6 +325,58 @@ namespace zaverecnaPrace
             }
             return employees;
         }
+        public void AddEmployee(string FirstName, string LastName, DateTime BirthDate, string Email, string Phone)
+        {
+            using(SqlConnection connection = new SqlConnection(Connection))
+            {
+                connection.Open();
+                using(SqlCommand cmd = connection.CreateCommand())
+                {
+                    cmd.CommandText = "INSERT INTO Employee VALUES (@FirstName, @LastName, @BirthDate, @Email, @Phone)";
+                    cmd.Parameters.AddWithValue("FirstName", FirstName);
+                    cmd.Parameters.AddWithValue("LastName", LastName);
+                    cmd.Parameters.AddWithValue("BirthDate", BirthDate);
+                    cmd.Parameters.AddWithValue("Email", Email);
+                    cmd.Parameters.AddWithValue("Phone", Phone);
+                    cmd.ExecuteNonQuery();
+                }
+                connection.Close();
+            }
+        }
+        public void UpdateEmployee(int PersonalNumber, string FirstName, string LastName, DateTime BirthDate, string Email, string Phone)
+        {
+            using(SqlConnection connection=new SqlConnection(Connection))
+            {
+                connection.Open();
+                using(SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "UPDATE Employee SET FirstName=@FirstName, LastName=@LastName, BirthDate=@BirthDate, Email=@Email, Phone=@Phone WHERE PersonalNumber=@PersonalNumber";
+                    cmd.Parameters.AddWithValue("FirstName", FirstName);
+                    cmd.Parameters.AddWithValue("LastName", LastName);
+                    cmd.Parameters.AddWithValue("BirthDate", BirthDate);
+                    cmd.Parameters.AddWithValue("Email", Email);
+                    cmd.Parameters.AddWithValue("Phone", Phone);
+                    cmd.Parameters.AddWithValue("PersonalNumber", PersonalNumber);
+                    cmd.ExecuteNonQuery();
+
+                }
+                connection.Close();
+            }
+        }
+        public void DeleteEmployee(int PersonalNumber)
+        {
+            using(SqlConnection connection = new SqlConnection(Connection))
+            {
+                connection.Open();
+                using(SqlCommand cmd = connection.CreateCommand())
+                {
+                    cmd.CommandText = "DELETE FROM Employee WHERE PersonalNumber=@PersonalNumber";
+                    cmd.Parameters.AddWithValue("PersonalNumber", PersonalNumber);
+                    cmd.ExecuteNonQuery();
+                }
+                connection.Close();
+            }
+        }
 
         public List<Contract> GetContracts()
         {

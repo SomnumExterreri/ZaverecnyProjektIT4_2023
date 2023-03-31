@@ -40,7 +40,7 @@ namespace zaverecnaPrace
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            AdminWorkTypeEdit adminWorkTypeEdit = new AdminWorkTypeEdit(Convert.ToInt32(lvControl.SelectedItems[0].SubItems[1].Text), this);
+            AdminWorkTypeEdit adminWorkTypeEdit = new AdminWorkTypeEdit(Convert.ToInt32(lvControl.SelectedItems[0].SubItems[0].Text), this);
             adminWorkTypeEdit.ShowDialog();
         }
 
@@ -48,7 +48,7 @@ namespace zaverecnaPrace
         {
             if(lvControl.SelectedItems.Count > 0)
             {
-                sqlRepository.DeleteWorkType(Convert.ToInt32(lvControl.SelectedItems[0].SubItems[1].Text));
+                sqlRepository.DeleteWorkType(Convert.ToInt32(lvControl.SelectedItems[0].SubItems[0].Text));
                 LoadData();
             }
         }

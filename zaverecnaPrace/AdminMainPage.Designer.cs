@@ -33,7 +33,7 @@
             this.btnContractControl = new System.Windows.Forms.Button();
             this.btnWorkHours = new System.Windows.Forms.Button();
             this.btnWorkType = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.btnEmployye = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // RoleControl
@@ -86,21 +86,22 @@
             this.btnWorkType.UseVisualStyleBackColor = true;
             this.btnWorkType.Click += new System.EventHandler(this.btnWorkType_Click);
             // 
-            // button6
+            // btnEmployye
             // 
-            this.button6.Location = new System.Drawing.Point(241, 368);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(175, 70);
-            this.button6.TabIndex = 5;
-            this.button6.Text = "button6";
-            this.button6.UseVisualStyleBackColor = true;
+            this.btnEmployye.Location = new System.Drawing.Point(241, 368);
+            this.btnEmployye.Name = "btnEmployye";
+            this.btnEmployye.Size = new System.Drawing.Size(175, 70);
+            this.btnEmployye.TabIndex = 5;
+            this.btnEmployye.Text = "Správa zaměstnanců";
+            this.btnEmployye.UseVisualStyleBackColor = true;
+            this.btnEmployye.Click += new System.EventHandler(this.btnEmployye_Click);
             // 
             // AdminMainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(426, 450);
-            this.Controls.Add(this.button6);
+            this.Controls.Add(this.btnEmployye);
             this.Controls.Add(this.btnWorkType);
             this.Controls.Add(this.btnWorkHours);
             this.Controls.Add(this.btnContractControl);
@@ -119,6 +120,6 @@
         private System.Windows.Forms.Button btnContractControl;
         private System.Windows.Forms.Button btnWorkHours;
         private System.Windows.Forms.Button btnWorkType;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button btnEmployye;
     }
 }

@@ -1,11 +1,11 @@
-CREATE TABLE [dbo].[WorkHours]
-(
-	[Id] INT NOT NULL PRIMARY KEY,
-	[EmployeeId] int not null,
-	[ContactId] int not null,
-	[WorkTypeStyle] varchar(30) not null,
-	[Hours] int not null, 
-    CONSTRAINT [EmployeeId] FOREIGN KEY ([EmployeeId]) REFERENCES [dbo].[Employee]([PersonalNumber]), 
-    CONSTRAINT [ContactId] FOREIGN KEY ([ContactId]) REFERENCES [dbo].[Contract]([ContractNumber]), 
-    CONSTRAINT [WorkTypeId] FOREIGN KEY ([WorkTypeStyle]) REFERENCES [dbo].[WorkType]([Name])
-)
+CREATE TABLE [dbo].[WorkHours] (
+    [Id]            INT          NOT NULL,
+    [PersonalNumber]INT          NOT NULL,
+    [ContactId]     INT          NOT NULL,
+    [WorkTypeStyleId] INT          NOT NULL,
+    [Hours]         INT          NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [EmployeeId] FOREIGN KEY ([PersonalNumber]) REFERENCES [dbo].[Employee] ([PersonalNumber]),
+    CONSTRAINT [ContactId] FOREIGN KEY ([ContactId]) REFERENCES [dbo].[Contract] ([ContractNumber]), 
+    CONSTRAINT [WorkTypeStyle] FOREIGN KEY ([WorkTypeStyleId]) REFERENCES [dbo].[WorkType]([Id])
+);

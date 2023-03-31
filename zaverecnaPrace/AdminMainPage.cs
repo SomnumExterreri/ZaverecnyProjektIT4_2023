@@ -43,6 +43,12 @@ namespace zaverecnaPrace
 
         private void btnWorkType_Click(object sender, EventArgs e)
         {
+            AdminWorkTypeControl adminWorkTypeControl = new AdminWorkTypeControl();
+            adminWorkTypeControl.ShowDialog();
+        }
+
+        private void btnEmployye_Click(object sender, EventArgs e)
+        {
 
         }
     }

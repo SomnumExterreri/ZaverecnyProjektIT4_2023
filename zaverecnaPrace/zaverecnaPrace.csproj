@@ -64,6 +64,24 @@
     <Compile Include="AdminContractEdit.Designer.cs">
       <DependentUpon>AdminContractEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdminEmployeeAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminEmployeeAdd.Designer.cs">
+      <DependentUpon>AdminEmployeeAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminEmployeeEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminEmployeeEdit.Designer.cs">
+      <DependentUpon>AdminEmployeeEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminEmployyeControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminEmployyeControl.Designer.cs">
+      <DependentUpon>AdminEmployyeControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdminMainPage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,6 +173,7 @@
     <Compile Include="UserMainPage.Designer.cs">
       <DependentUpon>UserMainPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="WorkHours.cs" />
     <Compile Include="WorkType.cs" />
     <EmbeddedResource Include="AdminContractAdd.resx">
       <DependentUpon>AdminContractAdd.cs</DependentUpon>
@@ -164,6 +183,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AdminContractEdit.resx">
       <DependentUpon>AdminContractEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminEmployeeAdd.resx">
+      <DependentUpon>AdminEmployeeAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminEmployeeEdit.resx">
+      <DependentUpon>AdminEmployeeEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminEmployyeControl.resx">
+      <DependentUpon>AdminEmployyeControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AdminMainPage.resx">
       <DependentUpon>AdminMainPage.cs</DependentUpon>
