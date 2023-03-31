@@ -82,6 +82,7 @@
             this.btnAdd.TabIndex = 1;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnEdit
             // 
@@ -91,6 +92,7 @@
             this.btnEdit.TabIndex = 2;
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnDelete
             // 
@@ -100,6 +102,7 @@
             this.btnDelete.TabIndex = 3;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // AdminUserControl
             // 
@@ -112,6 +115,7 @@
             this.Controls.Add(this.lvControl);
             this.Name = "AdminUserControl";
             this.Text = "AdminUserControl";
+            this.Load += new System.EventHandler(this.AdminUserControl_Load);
             this.ResumeLayout(false);
 
         }

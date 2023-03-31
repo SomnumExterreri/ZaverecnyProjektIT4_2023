@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -20,26 +22,6 @@ namespace zaverecnaPrace
             string ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Attendance;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         }
 
-        public void Login(string Username, string Password)
-        {
-            using (SqlConnection connection = new SqlConnection(Connection))
-            {
-                connection.Open();
-                using (SqlCommand cmd = connection.CreateCommand())
-                {
-                    cmd.CommandText = "select * from Users where Username = @username";
-                    cmd.Parameters.AddWithValue("username", Username);
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-
-                        }
-                    }
-                }
-                connection.Close();
-            }
-        }
 
         public void UpdateUser(string Username, int Role, int Id)
         {
@@ -73,6 +55,7 @@ namespace zaverecnaPrace
                 connection.Close();
             }
         }
+
 
         public void ResetPassword(byte[] Password, byte[] PasswordSalt, int Id)
         {
@@ -222,7 +205,55 @@ namespace zaverecnaPrace
             return role;
         }
 
-        public List<Role> GetRole()
+
+
+        public Role GetRole(string Name)
+        {
+            Role role = null;
+            using (SqlConnection connection = new SqlConnection(Connection))
+            {
+                connection.Open();
+                using (SqlCommand cmd = connection.CreateCommand())
+                {
+                    cmd.CommandText = "SELECT * FROM Role WHERE Name=@Name";
+                    cmd.Parameters.AddWithValue("Name", Name);
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                            role = new Role(null, Convert.ToInt32(reader["Id"]));
+                        else
+                            MessageBox.Show("Špatné Id role!!");
+                    }
+                }
+                connection.Close();
+            }
+            return role;
+        }
+
+        public Employee GetEmployee(int PersonalNumber)
+        {
+            Employee employee = null;
+            using(SqlConnection connection = new SqlConnection(Connection))
+            {
+                connection.Open();
+                using (SqlCommand cmd = connection.CreateCommand())
+                {
+                    cmd.CommandText = "SELECT * FROM Employee WHERE PersonalNumber=@PersonalNumber";
+                    cmd.Parameters.AddWithValue("PersonalNumber", PersonalNumber);
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                            employee = new Employee(Convert.ToInt32(reader["PersonalNumber"]), reader["FirstName"].ToString(), reader["LastName"].ToString(), (DateTime)reader["BirthDate"], reader["Email"].ToString(), reader["Phone"].ToString());
+                        else
+                            MessageBox.Show("Zaměstnanec neexistuje!");
+                    }
+                }
+                connection.Close();
+            }
+            return employee;
+        }
+
+        public List<Role> GetRoles()
         {
             List<Role> roleList = new List<Role>();
             using(SqlConnection connection = new SqlConnection(Connection))
@@ -242,29 +273,68 @@ namespace zaverecnaPrace
             return roleList;
         }
 
-        //public bool EmployeeChecker(int Id)
-        //{
-        //    User user = null;
-        //    using (SqlConnection connection = new SqlConnection(Connection))
-        //    {
-        //        connection.Open();
-        //        using(SqlCommand cmd = connection.CreateCommand())
-        //        {
-        //            cmd.CommandText = "SELECT * FROM Users WHERE personalNumber=@personalNumber";
-        //            cmd.Parameters.AddWithValue("personalNumber", personalNumber);
-        //            using(SqlDataReader reader = cmd.ExecuteReader())
-        //            {
-        //                if (reader.Read())
-        //                    user = new User(Convert.ToInt32(reader["Id"]));
-        //            }
-        //        }
-        //        connection.Close();
-        //    }
-        //    if(user != null)
-        //        return true;
-        //    else
-        //        return false;
-        //}
+        public List<Employee> GetEmployees()
+        {
+            List<Employee> employees = new List<Employee>();
+            using (SqlConnection connection = new SqlConnection(Connection))
+            {
+                connection.Open();
+                using (SqlCommand cmd = connection.CreateCommand())
+                {
+                    cmd.CommandText = "SELECT * FROM Employee";
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                            employees.Add(new Employee(Convert.ToInt32(reader["PersonalNumber"]), reader["FirstName"].ToString(), reader["LastName"].ToString(), Convert.ToDateTime(reader["BirthDate"]), reader["Email"].ToString(), reader["Phone"].ToString()));
+                    }
+                }
+                connection.Close();
+            }
+            return employees;
+        }
+
+        public List<User> GetUsers()
+        {
+            List<User> users = new List<User>();
+            using (SqlConnection connection=new SqlConnection(Connection))
+            {
+                connection.Open();
+                using (SqlCommand cmd = connection.CreateCommand())
+                {
+                    cmd.CommandText = "SELECT * FROM Users";
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                            users.Add(new User(Convert.ToInt32(reader["IdUser"]), Convert.ToInt32(reader["PersonalNumber"]), Convert.ToInt32(reader["Roles"]), reader["Username"].ToString()));
+                    }
+                }
+                connection.Close();
+            }
+            return users;
+        }
+        public bool IsUsernameAvailable(int PersonalNumber)
+        {
+            User user = null;
+            using (SqlConnection connection=new SqlConnection(Connection))
+            {
+                connection.Open();
+                using(SqlCommand cmd = connection.CreateCommand())
+                {
+                    cmd.CommandText = "SELECT * FROM Users WHERE PersonalNumber=@PersonalNumber";
+                    cmd.Parameters.AddWithValue("PersonalNumber", PersonalNumber);
+                    using(SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                            user = new User(Convert.ToInt32(reader["IdUser"]));
+                    }
+                }
+                connection.Close();
+            }
+            if(user != null)
+                return true;
+            else
+                return false;
+        }
         
     }
 }

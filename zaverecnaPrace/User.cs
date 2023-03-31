@@ -27,7 +27,25 @@ namespace zaverecnaPrace
             Password = password;
             PasswordSalt = passwordSalt;
         }
-    
+
+        public User(int id, int personalNumber, int role, string userName)
+        {
+            Id = id;
+            PersonalNumber = personalNumber;
+            Role = role;
+            UserName = userName;
+        }
+
+        public User(int id)
+        {
+            Id = id;
+        }
+
+        public User(string userName)
+        {
+            UserName = userName;
+        }
+
         private void Hashing(string password)
         {
             using (var hmac = new HMACSHA512())
@@ -38,7 +56,7 @@ namespace zaverecnaPrace
         }
         public void ResetingPassword()
         {
-            Hashing("Heslo");
+            Hashing("11111");
         }
 
         public bool Verify(string text)
