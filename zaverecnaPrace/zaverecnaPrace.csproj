@@ -46,6 +46,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminContractAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminContractAdd.Designer.cs">
+      <DependentUpon>AdminContractAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminContractControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminContractControl.Designer.cs">
+      <DependentUpon>AdminContractControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminContractEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminContractEdit.Designer.cs">
+      <DependentUpon>AdminContractEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdminMainPage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,12 +106,37 @@
     <Compile Include="AdminUserEdit.Designer.cs">
       <DependentUpon>AdminUserEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdminWorkHoursControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminWorkHoursControl.Designer.cs">
+      <DependentUpon>AdminWorkHoursControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminWorkTypeAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminWorkTypeAdd.Designer.cs">
+      <DependentUpon>AdminWorkTypeAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminWorkTypeControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminWorkTypeControl.Designer.cs">
+      <DependentUpon>AdminWorkTypeControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminWorkTypeEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminWorkTypeEdit.Designer.cs">
+      <DependentUpon>AdminWorkTypeEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="ChangePassword.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ChangePassword.Designer.cs">
       <DependentUpon>ChangePassword.cs</DependentUpon>
     </Compile>
+    <Compile Include="Contract.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
@@ -112,6 +155,16 @@
     <Compile Include="UserMainPage.Designer.cs">
       <DependentUpon>UserMainPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="WorkType.cs" />
+    <EmbeddedResource Include="AdminContractAdd.resx">
+      <DependentUpon>AdminContractAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminContractControl.resx">
+      <DependentUpon>AdminContractControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminContractEdit.resx">
+      <DependentUpon>AdminContractEdit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AdminMainPage.resx">
       <DependentUpon>AdminMainPage.cs</DependentUpon>
     </EmbeddedResource>
@@ -132,6 +185,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AdminUserEdit.resx">
       <DependentUpon>AdminUserEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminWorkHoursControl.resx">
+      <DependentUpon>AdminWorkHoursControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminWorkTypeAdd.resx">
+      <DependentUpon>AdminWorkTypeAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminWorkTypeControl.resx">
+      <DependentUpon>AdminWorkTypeControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminWorkTypeEdit.resx">
+      <DependentUpon>AdminWorkTypeEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ChangePassword.resx">
       <DependentUpon>ChangePassword.cs</DependentUpon>

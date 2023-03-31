@@ -42,7 +42,7 @@ namespace zaverecnaPrace
                 sqlRepository.UpdateUser(txtUsername.Text, role.Id, IdUser);
                 adminUserControl.LoadData();
                 this.Close();
-                MessageBox.Show("Data synchronizována.");
+                MessageBox.Show("Databáze aktualizována");
             }
             else
                 MessageBox.Show("Vyplňte všechny údaje");

@@ -16,5 +16,34 @@ namespace zaverecnaPrace
         {
             InitializeComponent();
         }
+
+        private void RoleControl_Click(object sender, EventArgs e)
+        {
+            AdminRoleControl adminRoleControl = new AdminRoleControl();
+            adminRoleControl.ShowDialog();
+        }
+
+        private void UserControl_Click(object sender, EventArgs e)
+        {
+            AdminUserControl adminUserControl = new AdminUserControl();
+            adminUserControl.ShowDialog();
+        }
+
+        private void btnContractControl_Click(object sender, EventArgs e)
+        {
+            AdminContractControl adminContractControl = new AdminContractControl();
+            adminContractControl.ShowDialog();
+        }
+
+        private void btnWorkHours_Click(object sender, EventArgs e)
+        {
+            AdminWorkHoursControl adminWorkHoursControl = new AdminWorkHoursControl();
+            adminWorkHoursControl.ShowDialog();
+        }
+
+        private void btnWorkType_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

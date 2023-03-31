@@ -25,10 +25,10 @@ namespace zaverecnaPrace
 
         public void UpdateUser(string Username, int Role, int Id)
         {
-            using(SqlConnection connection = new SqlConnection(Connection))
+            using (SqlConnection connection = new SqlConnection(Connection))
             {
                 connection.Open();
-                using(SqlCommand cmd = connection.CreateCommand())
+                using (SqlCommand cmd = connection.CreateCommand())
                 {
                     cmd.CommandText = "UPDATE Users SET Username=@Username, Role=@Role WHERE Id=Id";
                     cmd.Parameters.AddWithValue("Username", Username);
@@ -42,10 +42,10 @@ namespace zaverecnaPrace
 
         public void UpdateRole(int Id, string Name)
         {
-            using(SqlConnection connection=new SqlConnection(Connection))
+            using (SqlConnection connection = new SqlConnection(Connection))
             {
                 connection.Open();
-                using(SqlCommand cmd =connection.CreateCommand())
+                using (SqlCommand cmd = connection.CreateCommand())
                 {
                     cmd.CommandText = "UPDATE Role set Name=@Name WHERE Id=@Id";
                     cmd.Parameters.AddWithValue("Name", Name);
@@ -102,6 +102,39 @@ namespace zaverecnaPrace
                 {
                     cmd.CommandText = "INSERT INTO Role VALUES (@roleName)";
                     cmd.Parameters.AddWithValue("roleName", roleName);
+                    cmd.ExecuteNonQuery();
+                }
+                connection.Close();
+            }
+        }
+
+        public void AddContract(string Customer, string Description)
+        {
+            using (SqlConnection connection = new SqlConnection(Connection))
+            {
+                connection.Open();
+                using (SqlCommand cmd = connection.CreateCommand())
+                {
+                    cmd.CommandText = "INSERT INTO Contract VALUES (@Customer, @Description)";
+                    cmd.Parameters.AddWithValue("Customer", Customer);
+                    cmd.Parameters.AddWithValue("Description", Description);
+                    cmd.ExecuteNonQuery();
+                }
+                connection.Close();
+            }
+        }
+
+        public void UpdateContract(int ContractNumber, string Customer, string Description)
+        {
+            using (SqlConnection connection = new SqlConnection(Connection))
+            {
+                connection.Open();
+                using (SqlCommand cmd = connection.CreateCommand())
+                {
+                    cmd.CommandText = "UPDATE Contract SET Customer=@Customer, Description=@Description WHERE ContractNumber=@ContractNumber";
+                    cmd.Parameters.AddWithValue("Customer", Customer);
+                    cmd.Parameters.AddWithValue("Description", Description);
+                    cmd.Parameters.AddWithValue("ContractNumber", ContractNumber);
                     cmd.ExecuteNonQuery();
                 }
                 connection.Close();
@@ -188,11 +221,11 @@ namespace zaverecnaPrace
             using (SqlConnection connection = new SqlConnection(Connection))
             {
                 connection.Open();
-                using(SqlCommand cmd = connection.CreateCommand())
+                using (SqlCommand cmd = connection.CreateCommand())
                 {
                     cmd.CommandText = "SELECT * FROM Role WHERE Id=@Id";
                     cmd.Parameters.AddWithValue("Id", Id);
-                    using(SqlDataReader reader = cmd.ExecuteReader())
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         if (reader.Read())
                             role = new Role(reader["Name"].ToString(), 0);
@@ -233,7 +266,7 @@ namespace zaverecnaPrace
         public Employee GetEmployee(int PersonalNumber)
         {
             Employee employee = null;
-            using(SqlConnection connection = new SqlConnection(Connection))
+            using (SqlConnection connection = new SqlConnection(Connection))
             {
                 connection.Open();
                 using (SqlCommand cmd = connection.CreateCommand())
@@ -256,13 +289,13 @@ namespace zaverecnaPrace
         public List<Role> GetRoles()
         {
             List<Role> roleList = new List<Role>();
-            using(SqlConnection connection = new SqlConnection(Connection))
+            using (SqlConnection connection = new SqlConnection(Connection))
             {
                 connection.Open();
-                using(SqlCommand cmd = connection.CreateCommand())
+                using (SqlCommand cmd = connection.CreateCommand())
                 {
                     cmd.CommandText = "SELECT * FROM Role";
-                    using(SqlDataReader reader = cmd.ExecuteReader())
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                             roleList.Add(new Role(reader["Name"].ToString(), Convert.ToInt32(reader["Id"])));
@@ -293,10 +326,65 @@ namespace zaverecnaPrace
             return employees;
         }
 
+        public List<Contract> GetContracts()
+        {
+            List<Contract> contracts = new List<Contract>();
+            using (SqlConnection connection = new SqlConnection(Connection))
+            {
+                connection.Open();
+                using (SqlCommand cmd = connection.CreateCommand())
+                {
+                    cmd.CommandText = "SELECT * FROM Contract";
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                            contracts.Add(new Contract(Convert.ToInt32(reader["ContractNumber"]), reader["Customer"].ToString(), reader["Description"].ToString()));
+                    }
+                }
+                connection.Close();
+            }
+            return contracts;
+        }
+        public Contract GetContract(int ContractNumber)
+        {
+            Contract contract = null;
+            using (SqlConnection connection = new SqlConnection(Connection))
+            {
+                connection.Open();
+                using (SqlCommand cmd = connection.CreateCommand())
+                {
+                    cmd.CommandText = "SELECT * FROM Contract WHERE ContractNumber=@ContractNumber";
+                    cmd.Parameters.AddWithValue("ContractNumber", ContractNumber);
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                            contract = new Contract(Convert.ToInt32(reader["ContractNumber"]), reader["Customer"].ToString(), reader["Description"].ToString());
+                    }
+                }
+                connection.Close();
+            }
+            return contract;
+        }
+
+        public void DeleteContract(int ContractNumber)
+        {
+            using (SqlConnection connection = new SqlConnection(Connection))
+            {
+                connection.Open();
+                using (SqlCommand cmd = connection.CreateCommand())
+                {
+                    cmd.CommandText = "DELETE FROM Contract WHERE ContractNumber=@ContractNumber";
+                    cmd.Parameters.AddWithValue("ContractNumber", ContractNumber);
+                    cmd.ExecuteNonQuery();
+                }
+                connection.Close();
+            }
+        }
+
         public List<User> GetUsers()
         {
             List<User> users = new List<User>();
-            using (SqlConnection connection=new SqlConnection(Connection))
+            using (SqlConnection connection = new SqlConnection(Connection))
             {
                 connection.Open();
                 using (SqlCommand cmd = connection.CreateCommand())
@@ -311,6 +399,93 @@ namespace zaverecnaPrace
                 connection.Close();
             }
             return users;
+        }
+
+        public List<WorkType> GetWorkTypes()
+        {
+            List<WorkType> workTypes = new List<WorkType>();
+            using (SqlConnection connection = new SqlConnection(Connection))
+            {
+                connection.Open();
+                using (SqlCommand cmd = connection.CreateCommand())
+                {
+                    cmd.CommandText = "SELECT * FROM WorkType";
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                            workTypes.Add(new WorkType(Convert.ToInt32(reader["Id"]), reader["Name"].ToString(), reader["Description"].ToString()));
+                    }
+                }
+                connection.Close();
+            }
+            return workTypes;
+        }
+
+        public void AddWorkType(string Name, string Description)
+        {
+            using (SqlConnection connection = new SqlConnection(Connection))
+            {
+                connection.Open();
+                using (SqlCommand cmd = connection.CreateCommand())
+                {
+                    cmd.CommandText = "INSERT INTO WorkType VALUES (@Name, @Description)";
+                    cmd.Parameters.AddWithValue("Name", Name);
+                    cmd.Parameters.AddWithValue("Description", Description);
+                    cmd.ExecuteNonQuery();
+                }
+                connection.Close();
+            }
+        }
+
+        public WorkType GetWorkType(int Id)
+        {
+            WorkType workType = null;
+            using (SqlConnection connection = new SqlConnection(Connection))
+            {
+                connection.Open();
+                using (SqlCommand cmd = connection.CreateCommand())
+                {
+                    cmd.CommandText = "SELECT * FROM WorkType WHERE Id=@Id";
+                    cmd.Parameters.AddWithValue("Id", Id);
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                            workType = new WorkType(Convert.ToInt32(reader["ID"]), reader["Name"].ToString(), reader["Description"].ToString());
+                    }
+                }
+                connection.Close();
+            }
+            return workType;
+        }
+        public void UpdateWorkType(int Id, string Name, string Description)
+        {
+            using(SqlConnection connection = new SqlConnection(Connection))
+            {
+                connection.Open();
+                using(SqlCommand cmd = connection.CreateCommand())
+                {
+                    cmd.CommandText = "UPDATE WorkType SET Name=@Name Description=@Description WHERE Id=@Id";
+                    cmd.Parameters.AddWithValue("Name", Name);
+                    cmd.Parameters.AddWithValue("Description", Description);
+                    cmd.Parameters.AddWithValue("Id", Id);
+                    cmd.ExecuteNonQuery();
+                }
+                connection.Open();
+            }
+        }
+        public void DeleteWorkType(int Id)
+        {
+            using( SqlConnection connection = new SqlConnection(Connection))
+            {
+                connection.Open();
+                using( SqlCommand cmd = connection.CreateCommand())
+                {
+                    cmd.CommandText = "DELETE FROM WorkType WHERE Id=@Id";
+                    cmd.Parameters.AddWithValue("Id", Id);
+                    cmd.ExecuteNonQuery();
+                }
+                connection.Close();
+            }
         }
         public bool IsUsernameAvailable(int PersonalNumber)
         {

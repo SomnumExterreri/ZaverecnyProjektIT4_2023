@@ -30,9 +30,9 @@
         {
             this.RoleControl = new System.Windows.Forms.Button();
             this.UserControl = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.btnContractControl = new System.Windows.Forms.Button();
+            this.btnWorkHours = new System.Windows.Forms.Button();
+            this.btnWorkType = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -44,6 +44,7 @@
             this.RoleControl.TabIndex = 0;
             this.RoleControl.Text = "Správa rolí";
             this.RoleControl.UseVisualStyleBackColor = true;
+            this.RoleControl.Click += new System.EventHandler(this.RoleControl_Click);
             // 
             // UserControl
             // 
@@ -53,33 +54,37 @@
             this.UserControl.TabIndex = 1;
             this.UserControl.Text = "Správa uživatelů";
             this.UserControl.UseVisualStyleBackColor = true;
+            this.UserControl.Click += new System.EventHandler(this.UserControl_Click);
             // 
-            // button3
+            // btnContractControl
             // 
-            this.button3.Location = new System.Drawing.Point(12, 368);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(175, 70);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnContractControl.Location = new System.Drawing.Point(12, 368);
+            this.btnContractControl.Name = "btnContractControl";
+            this.btnContractControl.Size = new System.Drawing.Size(175, 70);
+            this.btnContractControl.TabIndex = 2;
+            this.btnContractControl.Text = "Správa zakázek";
+            this.btnContractControl.UseVisualStyleBackColor = true;
+            this.btnContractControl.Click += new System.EventHandler(this.btnContractControl_Click);
             // 
-            // button4
+            // btnWorkHours
             // 
-            this.button4.Location = new System.Drawing.Point(241, 121);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(175, 70);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnWorkHours.Location = new System.Drawing.Point(241, 121);
+            this.btnWorkHours.Name = "btnWorkHours";
+            this.btnWorkHours.Size = new System.Drawing.Size(175, 70);
+            this.btnWorkHours.TabIndex = 3;
+            this.btnWorkHours.Text = "Hodiny v práci";
+            this.btnWorkHours.UseVisualStyleBackColor = true;
+            this.btnWorkHours.Click += new System.EventHandler(this.btnWorkHours_Click);
             // 
-            // button5
+            // btnWorkType
             // 
-            this.button5.Location = new System.Drawing.Point(241, 240);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(175, 70);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "button5";
-            this.button5.UseVisualStyleBackColor = true;
+            this.btnWorkType.Location = new System.Drawing.Point(241, 240);
+            this.btnWorkType.Name = "btnWorkType";
+            this.btnWorkType.Size = new System.Drawing.Size(175, 70);
+            this.btnWorkType.TabIndex = 4;
+            this.btnWorkType.Text = "Typy práce";
+            this.btnWorkType.UseVisualStyleBackColor = true;
+            this.btnWorkType.Click += new System.EventHandler(this.btnWorkType_Click);
             // 
             // button6
             // 
@@ -96,9 +101,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(426, 450);
             this.Controls.Add(this.button6);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.btnWorkType);
+            this.Controls.Add(this.btnWorkHours);
+            this.Controls.Add(this.btnContractControl);
             this.Controls.Add(this.UserControl);
             this.Controls.Add(this.RoleControl);
             this.Name = "AdminMainPage";
@@ -111,9 +116,9 @@
 
         private System.Windows.Forms.Button RoleControl;
         private System.Windows.Forms.Button UserControl;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btnContractControl;
+        private System.Windows.Forms.Button btnWorkHours;
+        private System.Windows.Forms.Button btnWorkType;
         private System.Windows.Forms.Button button6;
     }
 }

@@ -36,7 +36,7 @@ namespace zaverecnaPrace
                 sqlRepository.Register(Convert.ToInt32(PersonalNumber[1].Trim()), role.Id, user.UserName, user.Password, user.PasswordSalt);
                 adminUserControl.LoadData();
                 this.Close();
-                MessageBox.Show("Nový uživatel v databázi");
+                MessageBox.Show("Databáze aktualizována");
             }
             else
                 MessageBox.Show("Zadejte všechny údaje!");
@@ -56,7 +56,7 @@ namespace zaverecnaPrace
                 if(!sqlRepository.IsUsernameAvailable(employee.PersonalNumber))
                     cboxEmployee.Items.Add(employee.FirstName +" "+ employee.LastName + " - " + employee.PersonalNumber);
                 cboxRole.Items.Clear();
-                var Role = sqlRepository.GetRole();
+                var Role = sqlRepository.GetRoles();
                 foreach (var role in Role)
                     cboxRole.Items.Add(role.Name);
             }

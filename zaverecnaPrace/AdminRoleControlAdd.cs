@@ -28,6 +28,7 @@ namespace zaverecnaPrace
                 sqlRepository.AddRole(txtAdd.Text);
                 AdminRoleControl.LoadData();
                 Close();
+                MessageBox.Show("Databáze aktualizována");
             }
             else
             {

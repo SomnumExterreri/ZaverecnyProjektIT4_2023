@@ -1,5 +1,6 @@
-CREATE TABLE [dbo].[WorkType]
-(
-	[Name] Varchar(30) not null PRIMARY KEY,
-	[Description] varchar(100) not null,
-)
+CREATE TABLE [dbo].[WorkType] (
+    [Id]          INT           IDENTITY (1, 1) NOT NULL,
+    [Name]        VARCHAR (30)  NOT NULL,
+    [Description] VARCHAR (200) NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);

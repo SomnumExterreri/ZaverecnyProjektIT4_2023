@@ -30,6 +30,7 @@ namespace zaverecnaPrace
                 sqlRepository.UpdateRole(Id, txtRoleEdit.Text);
                 AdminRoleControl.LoadData();
                 Close();
+                MessageBox.Show("Databáze aktualizována");
             }
             else
                 MessageBox.Show("Chybý nové jméno role!!");
