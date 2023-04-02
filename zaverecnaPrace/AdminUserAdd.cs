@@ -18,6 +18,7 @@ namespace zaverecnaPrace
         {
             InitializeComponent();
             sqlRepository = new SqlRepository();
+            adminUserControl = new AdminUserControl();
         }
 
         private void tbUsername_TextChanged(object sender, EventArgs e) //Nemazat, jinak nefunguje formulář!!

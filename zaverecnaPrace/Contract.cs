@@ -18,5 +18,10 @@ namespace zaverecnaPrace
             Customer = customer;
             Description = description;
         }
+
+        public Contract(int contractNumber)
+        {
+            ContractNumber = contractNumber;
+        }
     }
 }

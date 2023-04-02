@@ -46,7 +46,7 @@ namespace zaverecnaPrace
             UserName = userName;
         }
 
-        private void Hashing(string password)
+        public void Hashing(string password)
         {
             using (var hmac = new HMACSHA512())
             {

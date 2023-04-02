@@ -150,6 +150,7 @@ namespace zaverecnaPrace
                 {
                     cmd.CommandText = "DELETE FROM Role WHERE Id=@Id";
                     cmd.Parameters.AddWithValue("Id", Id);
+                    cmd.ExecuteNonQuery();
                 }
                 connection.Close();
             }
@@ -164,6 +165,7 @@ namespace zaverecnaPrace
                 {
                     cmd.CommandText = "DELETE FROM Users WHERE Id=@Id";
                     cmd.Parameters.AddWithValue("Id", Id);
+                    cmd.ExecuteNonQuery();
                 }
                 connection.Close();
             }
@@ -182,7 +184,7 @@ namespace zaverecnaPrace
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         if (reader.Read())
-                            user = new User(Convert.ToInt32(reader["Id"]), Convert.ToInt32(reader["PersonalNumber"]), Convert.ToInt32(reader["Role"]), reader["Username"].ToString(), (byte[])reader["Password"], (byte[])reader["PasswordSalt"]);
+                            user = new User(Convert.ToInt32(reader["IdUser"]), Convert.ToInt32(reader["PersonalNumber"]), Convert.ToInt32(reader["Roles"]), reader["Username"].ToString(), (byte[])reader["Password"], (byte[])reader["PasswordSalt"]);
                         else
                             MessageBox.Show("Neplatné uživatelské jméno");
                     }
@@ -192,7 +194,7 @@ namespace zaverecnaPrace
             return user;
         }
 
-        public User GetUserById(int Id)
+        public User GetUserById(int IdUser)
         {
             User user = null;
             using (SqlConnection connection = new SqlConnection(Connection))
@@ -200,12 +202,12 @@ namespace zaverecnaPrace
                 connection.Open();
                 using (SqlCommand cmd = connection.CreateCommand())
                 {
-                    cmd.CommandText = "SELECT * FROM Users WHERE Id=@Id";
-                    cmd.Parameters.AddWithValue("Id", Id);
+                    cmd.CommandText = "SELECT * FROM Users WHERE IdUser=@IdUser";
+                    cmd.Parameters.AddWithValue("IdUser", IdUser);
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         if (reader.Read())
-                            user = new User(Convert.ToInt32(reader["Id"]), Convert.ToInt32(reader["PersonalNumber"]), Convert.ToInt32(reader["Role"]), reader["Username"].ToString(), (byte[])reader["Password"], (byte[])reader["PasswordSalt"]);
+                            user = new User(Convert.ToInt32(reader["IdUser"]), Convert.ToInt32(reader["PersonalNumber"]), Convert.ToInt32(reader["Roles"]), reader["Username"].ToString(), (byte[])reader["Password"], (byte[])reader["PasswordSalt"]);
                         else
                             MessageBox.Show("Neplatné uživatelské jméno");
                     }
@@ -348,7 +350,7 @@ namespace zaverecnaPrace
             using(SqlConnection connection=new SqlConnection(Connection))
             {
                 connection.Open();
-                using(SqlCommand cmd = new SqlCommand())
+                using(SqlCommand cmd = connection.CreateCommand())
                 {
                     cmd.CommandText = "UPDATE Employee SET FirstName=@FirstName, LastName=@LastName, BirthDate=@BirthDate, Email=@Email, Phone=@Phone WHERE PersonalNumber=@PersonalNumber";
                     cmd.Parameters.AddWithValue("FirstName", FirstName);
@@ -416,6 +418,46 @@ namespace zaverecnaPrace
                 connection.Close();
             }
             return contract;
+        }
+
+        public Contract GetContractByName(string Customer)
+        {
+            Contract contract = null;
+            using (SqlConnection connection = new SqlConnection(Connection))
+            {
+                connection.Open();
+                using (SqlCommand cmd = connection.CreateCommand())
+                {
+                    cmd.CommandText = "SELECT * FROM Contract WHERE Customer=@Customer";
+                    cmd.Parameters.AddWithValue("Customer", Customer);
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                            contract = new Contract(Convert.ToInt32(reader["ContractNumber"]), reader["Customer"].ToString(), reader["Description"].ToString());
+                    }
+                }
+                connection.Close();
+            }
+            return contract;
+        }
+
+        public void AddWorkHour(int PersonalNumber, int ContactId, int WorkTypeStyleId, int Hours)
+        {
+            using(SqlConnection connection = new SqlConnection(Connection))
+            {
+                connection.Open();
+                using(SqlCommand cmd = connection.CreateCommand())
+                {
+                    cmd.CommandText = "INSERT INTO WorkHours VALUES (@PersonalNumber, @ContactId, @WorkTypeStyleId, @Hours)";
+                    cmd.Parameters.AddWithValue("PersonalNumber", PersonalNumber);
+                    cmd.Parameters.AddWithValue("ContactId", ContactId);
+                    cmd.Parameters.AddWithValue("WorkTypeStyleId", WorkTypeStyleId);
+                    cmd.Parameters.AddWithValue("Hours", Hours);
+                    cmd.ExecuteNonQuery();
+                }
+                connection.Close();
+            }
+             
         }
 
         public void DeleteContract(int ContractNumber)
@@ -516,13 +558,13 @@ namespace zaverecnaPrace
                 connection.Open();
                 using(SqlCommand cmd = connection.CreateCommand())
                 {
-                    cmd.CommandText = "UPDATE WorkType SET Name=@Name Description=@Description WHERE Id=@Id";
+                    cmd.CommandText = "UPDATE WorkType SET Name=@Name, Description=@Description WHERE Id=@Id";
                     cmd.Parameters.AddWithValue("Name", Name);
                     cmd.Parameters.AddWithValue("Description", Description);
                     cmd.Parameters.AddWithValue("Id", Id);
                     cmd.ExecuteNonQuery();
                 }
-                connection.Open();
+                connection.Close();
             }
         }
         public void DeleteWorkType(int Id)
@@ -533,6 +575,61 @@ namespace zaverecnaPrace
                 using( SqlCommand cmd = connection.CreateCommand())
                 {
                     cmd.CommandText = "DELETE FROM WorkType WHERE Id=@Id";
+                    cmd.Parameters.AddWithValue("Id", Id);
+                    cmd.ExecuteNonQuery();
+                }
+                connection.Close();
+            }
+        }
+
+        public List<WorkHours>GetWorkHours()
+        {
+            List<WorkHours> workHours = new List<WorkHours>();
+            using(SqlConnection connection = new SqlConnection(Connection))
+            {
+                connection.Open();
+                using(SqlCommand cmd = connection.CreateCommand())
+                {
+                    cmd.CommandText = "SELECT * FROM WorkHours";
+                    using(SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                            workHours.Add(new WorkHours(Convert.ToInt32(reader["Id"]), Convert.ToInt32(reader["PersonalNumber"]), Convert.ToInt32(reader["ContactId"]), Convert.ToInt32(reader["WorkTypeStyleId"]), Convert.ToInt32(reader["Hours"])));
+                    }
+                }
+                connection.Close();
+            }
+            return workHours;
+        }
+
+        public List<Contract> GetContract()
+        {
+            List<Contract> contracts = new List<Contract>();
+            using( SqlConnection connection = new SqlConnection(Connection))
+            {
+                connection.Open();
+                using( SqlCommand cmd = connection.CreateCommand())
+                {
+                    cmd.CommandText = "SELECT  FROM Contract";
+                    using( SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                            contracts.Add(new Contract(Convert.ToInt32(reader["ContractNumber"]), reader["Customer"].ToString(), reader[""].ToString()));
+                    }
+                }
+                connection.Close();
+            }
+            return contracts;
+        }
+
+        public void DeleteWorkHours(int Id)
+        {
+            using(SqlConnection connection = new SqlConnection(Connection))
+            {
+                connection.Open();
+                using(SqlCommand cmd = connection.CreateCommand())
+                {
+                    cmd.CommandText = "DELETE FROM WorkHours WHERE Id=@Id";
                     cmd.Parameters.AddWithValue("Id", Id);
                     cmd.ExecuteNonQuery();
                 }

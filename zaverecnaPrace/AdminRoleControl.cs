@@ -16,7 +16,7 @@ namespace zaverecnaPrace
         public AdminRoleControl()
         {
             InitializeComponent();
-            SqlRepository sqlRepository = new SqlRepository();
+            sqlRepository = new SqlRepository();
         }
 
         public void LoadData()

@@ -173,6 +173,12 @@
     <Compile Include="UserMainPage.Designer.cs">
       <DependentUpon>UserMainPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserWork.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserWork.Designer.cs">
+      <DependentUpon>UserWork.cs</DependentUpon>
+    </Compile>
     <Compile Include="WorkHours.cs" />
     <Compile Include="WorkType.cs" />
     <EmbeddedResource Include="AdminContractAdd.resx">
@@ -241,6 +247,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UserMainPage.resx">
+      <DependentUpon>UserMainPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserWork.resx">
+      <DependentUpon>UserWork.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

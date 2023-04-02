@@ -30,7 +30,7 @@ namespace zaverecnaPrace
                         var Role = sqlRepository.GetRole(user.Role);
                         if (Role != null && Role.Name != "admin")
                         {
-                            UserMainPage userMainPage = new UserMainPage();
+                            UserMainPage userMainPage = new UserMainPage(user.Id);
                             userMainPage.Show();
                             this.Hide();
                         }
@@ -59,5 +59,12 @@ namespace zaverecnaPrace
             ChangePassword changePassword = new ChangePassword();
             changePassword.Show();
         }
-    }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+            //    var user = new User(0, 1, 1, "Admin");
+            //    user.Hashing("12345");
+            //    sqlRepository.Register(1, 1, "Admin", user.Password, user.PasswordSalt);
+        }
+}
 }

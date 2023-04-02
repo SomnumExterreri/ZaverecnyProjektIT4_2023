@@ -34,7 +34,7 @@ namespace zaverecnaPrace
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            AdminContractAdd adminContractAdd = new AdminContractAdd();
+            AdminContractAdd adminContractAdd = new AdminContractAdd(this);
             adminContractAdd.ShowDialog();
         }
 

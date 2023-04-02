@@ -18,6 +18,7 @@ namespace zaverecnaPrace
 
         public AdminContractEdit(int contractNumber)
         {
+            adminContractControl = new AdminContractControl();
             InitializeComponent();
             ContractNumber = contractNumber;
             sqlRepository = new SqlRepository();

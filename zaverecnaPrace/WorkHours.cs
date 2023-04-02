@@ -8,7 +8,7 @@ namespace zaverecnaPrace
 {
     internal class WorkHours
     {
-        public WorkHours(int id, int personalNumber, int contactId, string workTypeStyleId, TimeSpan hours)
+        public WorkHours(int id, int personalNumber, int contactId, int workTypeStyleId, int hours)
         {
             Id = id;
             PersonalNumber = personalNumber;
@@ -20,7 +20,7 @@ namespace zaverecnaPrace
         public int Id { get; set; }
         public int PersonalNumber { get; set; }
         public int ContactId { get; set; }
-        public string WorkTypeStyleId { get; set; }
-        public TimeSpan Hours { get; set; }
+        public int WorkTypeStyleId { get; set; }
+        public int Hours { get; set; }
     }
 }

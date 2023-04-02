@@ -14,8 +14,9 @@ namespace zaverecnaPrace
     {
         private AdminContractControl adminContractControl;
         SqlRepository sqlRepository;
-        public AdminContractAdd()
+        public AdminContractAdd(AdminContractControl adminContractControl)
         {
+            this.adminContractControl = adminContractControl;
             sqlRepository = new SqlRepository();
             InitializeComponent();
         }
@@ -31,7 +32,7 @@ namespace zaverecnaPrace
             {
                 sqlRepository.AddContract(txtCustomer.Text, txtDescription.Text);
                 adminContractControl.LoadData();
-                Close();
+                this.Close();
                 MessageBox.Show("Databáze aktualizována");
             }
             else

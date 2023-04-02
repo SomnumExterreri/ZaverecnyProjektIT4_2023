@@ -49,7 +49,8 @@ namespace zaverecnaPrace
 
         private void btnEmployye_Click(object sender, EventArgs e)
         {
-
+            AdminEmployyeControl adminEmployyeControl = new AdminEmployyeControl();
+            adminEmployyeControl.ShowDialog();
         }
     }
 }

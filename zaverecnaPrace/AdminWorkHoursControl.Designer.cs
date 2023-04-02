@@ -29,56 +29,77 @@
         private void InitializeComponent()
         {
             this.lvControl = new System.Windows.Forms.ListView();
-            this.EmployyeId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ContractId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.WorkTypeStyle = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.WorkHours = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.PersonalNumber = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ContactId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.WorkTypeStyleId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Hours = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnDelete = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lvControl
             // 
             this.lvControl.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.EmployyeId,
-            this.ContractId,
-            this.WorkTypeStyle,
-            this.WorkHours});
+            this.Id,
+            this.PersonalNumber,
+            this.ContactId,
+            this.WorkTypeStyleId,
+            this.Hours});
+            this.lvControl.FullRowSelect = true;
             this.lvControl.GridLines = true;
             this.lvControl.HideSelection = false;
             this.lvControl.Location = new System.Drawing.Point(0, 0);
             this.lvControl.Name = "lvControl";
-            this.lvControl.Size = new System.Drawing.Size(566, 452);
+            this.lvControl.Size = new System.Drawing.Size(523, 660);
             this.lvControl.TabIndex = 0;
             this.lvControl.UseCompatibleStateImageBehavior = false;
             this.lvControl.View = System.Windows.Forms.View.Details;
             // 
-            // EmployyeId
+            // Id
             // 
-            this.EmployyeId.Text = "Zaměstnanec";
-            this.EmployyeId.Width = 125;
+            this.Id.Text = "Číslo záznamu";
+            this.Id.Width = 90;
             // 
-            // ContractId
+            // PersonalNumber
             // 
-            this.ContractId.Text = "Zakázka";
-            this.ContractId.Width = 127;
+            this.PersonalNumber.Text = "Zaměstnanec";
+            this.PersonalNumber.Width = 105;
             // 
-            // WorkTypeStyle
+            // ContactId
             // 
-            this.WorkTypeStyle.Text = "Typ práce";
-            this.WorkTypeStyle.Width = 81;
+            this.ContactId.Text = "Zadavatel";
+            this.ContactId.Width = 93;
             // 
-            // WorkHours
+            // WorkTypeStyleId
             // 
-            this.WorkHours.Text = "Odpracované hodiny";
-            this.WorkHours.Width = 78;
+            this.WorkTypeStyleId.Text = "Typ činnosti";
+            this.WorkTypeStyleId.Width = 116;
+            // 
+            // Hours
+            // 
+            this.Hours.Text = "Odpracované hodiny";
+            this.Hours.Width = 118;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(569, 319);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.TabIndex = 2;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // AdminWorkHoursControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(566, 450);
+            this.ClientSize = new System.Drawing.Size(656, 660);
+            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.lvControl);
             this.Name = "AdminWorkHoursControl";
             this.Text = "AdminWorkHoursControl";
+            this.Load += new System.EventHandler(this.AdminWorkHoursControl_Load);
             this.ResumeLayout(false);
 
         }
@@ -86,9 +107,11 @@
         #endregion
 
         private System.Windows.Forms.ListView lvControl;
-        private System.Windows.Forms.ColumnHeader EmployyeId;
-        private System.Windows.Forms.ColumnHeader ContractId;
-        private System.Windows.Forms.ColumnHeader WorkTypeStyle;
-        private System.Windows.Forms.ColumnHeader WorkHours;
+        private System.Windows.Forms.ColumnHeader Id;
+        private System.Windows.Forms.ColumnHeader PersonalNumber;
+        private System.Windows.Forms.ColumnHeader ContactId;
+        private System.Windows.Forms.ColumnHeader WorkTypeStyleId;
+        private System.Windows.Forms.ColumnHeader Hours;
+        private System.Windows.Forms.Button btnDelete;
     }
 }

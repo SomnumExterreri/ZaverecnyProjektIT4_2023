@@ -45,6 +45,7 @@
             this.User,
             this.Username,
             this.Role});
+            this.lvControl.FullRowSelect = true;
             this.lvControl.GridLines = true;
             this.lvControl.HideSelection = false;
             this.lvControl.Location = new System.Drawing.Point(0, 0);

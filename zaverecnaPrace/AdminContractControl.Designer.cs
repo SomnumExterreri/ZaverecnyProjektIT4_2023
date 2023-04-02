@@ -73,6 +73,7 @@
             this.ContractNumber,
             this.ContractName,
             this.Description});
+            this.lvContract.FullRowSelect = true;
             this.lvContract.GridLines = true;
             this.lvContract.HideSelection = false;
             this.lvContract.Location = new System.Drawing.Point(0, 0);

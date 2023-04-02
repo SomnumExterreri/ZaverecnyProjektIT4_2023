@@ -73,6 +73,7 @@
             this.Id,
             this.Name,
             this.Description});
+            this.lvControl.FullRowSelect = true;
             this.lvControl.GridLines = true;
             this.lvControl.HideSelection = false;
             this.lvControl.Location = new System.Drawing.Point(0, 1);
